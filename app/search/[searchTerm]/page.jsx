@@ -4,12 +4,12 @@ import Link from "next/link";
 
 export default async function SearchResult({ params }) {
   const imagePath = "https://image.tmdb.org/t/p/original";
-  const imgNotFound ="https://i.ibb.co/HnV1rWh/Image-not-available.png"
   const { searchTerm } = params;
   const search = await fetch(
     `https://api.themoviedb.org/3/search/multi?api_key=${process.env.API_KEY}&query=${searchTerm}&language=en-US&page=1&include_adult=false`
   );
   const res = await search.json();
+    
 
   return (
     <div>
@@ -17,7 +17,7 @@ export default async function SearchResult({ params }) {
         Search Results for "{searchTerm.replace('%20',' ')}"
       </h1>
       <div className="grid gap-16 grid-cols-fluid mx-5 my-3 ">
-        {res.results.map((movie) =>
+        {res.results.length !== 0 ? res.results.map((movie) =>
           movie.poster_path ? (
             <div key={movie.id} className="rounded-lg text-center">
               <div className="flex justify-center ">
@@ -40,7 +40,7 @@ export default async function SearchResult({ params }) {
               </div>
             </div>
           ) : null
-        )}
+        ): <p className="text-yellow-500">No results found, try again :).</p>}
       </div>
     </div>
   );

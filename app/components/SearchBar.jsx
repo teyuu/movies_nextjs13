@@ -9,8 +9,10 @@ export default function SearchBar() {
 
 	const handleSearch = async (e)=>{
 		e.preventDefault()
-		setSearch("")
-		router.push(`/search/${search}`)
+		if(search.length !== 0){
+			setSearch("")
+			router.push(`/search/${search}`)
+		}
 	}
 
   return (
@@ -19,7 +21,7 @@ export default function SearchBar() {
 		type={'text'}
 		value={search}
 		placeholder={'search movie'}
-		onChange={(e)=>setSearch(e.target.value)}
+		onChange={ (e)=>setSearch(e.target.value)}
 		/>
 		<button type="submit"><BsSearch size={20}/></button>
 	</form>
