@@ -1,26 +1,61 @@
-import Pagination from "./components/Pagination";
-import Movies from "./components/Movie";
+import MainSlider from "./components/MainSlider";
+import SliderMovies from "./components/SliderMovies";
+import { getTopRatedMovies, getTrendingAll, getPopularMovies, getTopRatedSeries,getPopularSeries } from "@/fetching";
 
 export default async function Home() {
 
-  const data = await fetch(
-    `https://api.themoviedb.org/3/movie/popular/?api_key=${"4d48849058823cd2c6d4c39c3dfbcf4a"}&page=${1}`
-  );
-  const res = await data.json();
+  const trending =  await getTrendingAll()
+  const top_rated_res = await getTopRatedMovies()
+  const popularMovies = await getPopularMovies()
+  const topRatedSeries = await getTopRatedSeries()
+  const popularSeries = await getPopularSeries()
+
+  const categories = [
+    {
+      title:'Trending',
+      data:trending,
+      mediaType: "trends",
+      query: 'trending'
+    },
+    {
+      title:'Top rated',
+      data:top_rated_res,
+      mediaType: "movie",
+      query: 'top_rated'
+    },
+    {
+      title:'Popular',
+      data: popularMovies,
+      mediaType: "movie",
+      query: 'popular'
+
+    },
+    {
+      title:'Top rated series',
+      data: topRatedSeries,
+      mediaType: "tv",
+      query: 'top_rated'
+    },
+    {
+      title:'Popular series',
+      data: popularSeries,
+      mediaType: "tv",
+      query: 'popular'
+    }
+
+
+  ]
 
   return (
     <main>
-      <Pagination params={1} />
-      <div className="grid gap-16 grid-cols-fluid">
-        {res.results.map((movie) => (
-          <Movies
-            key={movie.id}
-            id={movie.id}
-            title={movie.title}
-            poster_path={movie.poster_path}
-            release_date={movie.release_date}
-          />
-        ))}
+      <div>
+        {/* Slider principal */}
+        <MainSlider movies={trending} />
+        <div className="flex flex-col gap-8">
+          {categories.map(({title, data, mediaType, query}, index)=>{
+           return( <SliderMovies key={index} title={title} movies={data} mediaType={mediaType} query={query}/>)
+          })}
+        </div>
       </div>
     </main>
   );

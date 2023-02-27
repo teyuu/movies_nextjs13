@@ -1,4 +1,4 @@
-import Movies from "../components/Movie";
+import Movies from "../components/Movies";
 import Pagination from "../components/Pagination";
 
 
@@ -15,8 +15,10 @@ const {currentpage} = params
 
   return (
     <>
+    <div className="flex justify-center py-10">
       <Pagination params={currentpage}/>
-      <div className="grid gap-16 grid-cols-fluid">
+    </div>
+      <div className="grid gap-16 grid-cols-fluid mx-5 my-3">
         {res.results.map((movie) => (
           <Movies
             key={movie.id}

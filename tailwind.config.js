@@ -11,9 +11,11 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns:{
-        fluid:"repeat(auto-fit,minmax(15rem,1fr))"
+        fluid:"repeat(auto-fit,minmax(16rem,1fr))"
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ],
 }

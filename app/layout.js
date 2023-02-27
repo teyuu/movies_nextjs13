@@ -1,5 +1,7 @@
 import './globals.css'
 import { Montserrat } from '@next/font/google'
+import Navbar from './components/NavBar'
+import Footer from './components/Footer'
 
 
 const montserrat = Montserrat({
@@ -16,7 +18,9 @@ export default function RootLayout({ children }) {
       */}
       <head />
       <body className={`${montserrat.className}`}>
+      <Navbar/>
         {children}
+        <Footer/>
         </body>
     </html>
   )

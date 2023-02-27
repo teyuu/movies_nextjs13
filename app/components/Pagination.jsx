@@ -1,25 +1,24 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 
 
-export default function Pagination({params}) {
+
+export default function Pagination({params, mediatype, classification}) {
   
   let [currentPage, setCurrentPage] = useState(Number(params));
   const router = useRouter()  
   
-
-
   const handleOnClikcNext = () => {
     setCurrentPage(prevInput => prevInput + 1);
-    router.push(`/${currentPage + 1}`)
+    router.push(`/all/${mediatype}/${classification}/${currentPage + 1}`)
   };
 
   const handleOnClikcPrev = () => {
     if(currentPage !== 1){
       setCurrentPage(prevInput => prevInput - 1);
-      router.push(`/${currentPage - 1}`)
+      router.push(`/all/${mediatype}/${classification}/${currentPage - 1}`)
     }
   };
 
