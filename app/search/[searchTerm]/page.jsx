@@ -14,7 +14,7 @@ export default async function SearchResult({ params }) {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-4">
-        Search Results for "{searchTerm}"
+        Search Results for "{searchTerm.replace('%20',' ')}"
       </h1>
       <div className="grid gap-16 grid-cols-fluid mx-5 my-3 ">
         {res.results.map((movie) =>
