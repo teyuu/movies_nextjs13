@@ -1,3 +1,4 @@
+
 import MainSlider from "./components/MainSlider";
 import SliderMovies from "./components/SliderMovies";
 import { getTopRatedMovies, getTrendingAll, getPopularMovies, getTopRatedSeries,getPopularSeries } from "@/fetching";
@@ -9,6 +10,9 @@ export default async function Home() {
   const popularMovies = await getPopularMovies()
   const topRatedSeries = await getTopRatedSeries()
   const popularSeries = await getPopularSeries()
+
+ 
+
 
   const categories = [
     {

@@ -9,8 +9,8 @@ const Navbar = () => {
     {
       label: "Home",
       route: "/",
-    },
-    { label: "About", route: "/about" },
+    }
+   
   ];
 
   const [nav, setNav] = useState(false);
@@ -39,7 +39,7 @@ const Navbar = () => {
       <h1 className="w-full text-3xl font-bold text-red-600">CineFilm</h1>
       </Link>
     
-      <ul className="hidden md:flex">
+      <ul className="hidden md:flex items-center">
             {links.map(({label, route})=>{
               return(
                 <li  className='p-4' key={route}>

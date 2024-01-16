@@ -41,6 +41,13 @@ export default async function page({ params }) {
             (movie) =>
               movie.poster_path && (
                 <div key={movie.id} className="rounded-lg text-center">
+                    <Link
+                      href={
+                        movie.media_type === "movie"
+                          ? `/movie/${movie.id}`
+                          : `/serie/${movie.id}`
+                      }
+                    >
                   <div className="flex justify-center ">
                     <Image
                       src={imagePath + `${movie.poster_path}`}
@@ -50,21 +57,14 @@ export default async function page({ params }) {
                     />
                   </div>
                   <div className="p-4">
-                    <Link
-                      href={
-                        movie.media_type === "movie"
-                          ? `/movie/${movie.id}`
-                          : `/serie/${movie.id}`
-                      }
-                    >
                       <p className="text-white text-lg font-semibold hover:underline">
                         {movie.title || movie.name}
                       </p>
-                    </Link>
                     <p className="text-sm text-white mb-2">
                       {movie.release_date || movie.first_air_date}
                     </p>
                   </div>
+                    </Link>
                 </div>
               )
           )}

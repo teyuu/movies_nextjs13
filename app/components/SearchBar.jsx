@@ -22,6 +22,7 @@ export default function SearchBar() {
 		value={search}
 		placeholder={'search movie'}
 		onChange={ (e)=>setSearch(e.target.value)}
+		className="px-5 py-2"
 		/>
 		<button type="submit"><BsSearch size={20}/></button>
 	</form>
