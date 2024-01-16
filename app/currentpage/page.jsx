@@ -19,7 +19,7 @@ const {currentpage} = params
       <Pagination params={currentpage}/>
     </div>
       <div className="grid gap-16 grid-cols-fluid mx-5 my-3">
-        {res.results.map((movie) => (
+        {res.results?.map((movie) => (
           <Movies
             key={movie.id}
             id={movie.id}
